@@ -21,19 +21,14 @@
 <pre id="eventSpan" style="display:none"></pre>
 
 <script type="text/javascript">
-//     var parsedData = vis.network.convertDot(document.getElementById('dot').textContent);
-//     var data = {
-//         nodes: parsedData.nodes,
-//         edges: parsedData.edges
-//     }
-    var nodes = new vis.DataSet([
+    var nodesSet = new vis.DataSet([
         {level: 1, id: 'CEA001', label: 'GAAL', title: 'CEA001 GEOMETRIA ANALITICA E ALGEBRA LINEAR'},
-        {level: 1, id: 'CEA030', label: 'Prog I', title: 'CEA030 PROGRAMACAO DE COMPUTADORES I'},
         {level: 1, id: 'CEA031', label: 'Química', title: 'CEA031 QUIMICA GERAL'},
         {level: 1, id: 'CEA160', label: 'Cálculo I', title: 'CEA160 CALCULO DIFERENCIAL E INTEGRAL I'},
         {level: 1, id: 'CEA201', label: 'Introdução à EC', title: 'CEA201 INTRODUCAO A ENGENHARIA DE COMPUTACAO'},
         {level: 1, id: 'CEA427', label: 'Metodologia de pesquisa', title: 'CEA427 METODOLOGIA DE PESQUISA APLICADA A COMPUTACAO'},
         {level: 1, id: 'EAD707', label: 'Comunicação e expressão', title: 'EAD707 COMUNICACAO E EXPRESSAO'},
+        {level: 1, id: 'CEA030', label: 'Prog I', title: 'CEA030 PROGRAMACAO DE COMPUTADORES I'},
 
         {level: 2, id: 'CEA003', label: 'Física I', title: 'FISICA I'},
         {level: 2, id: 'CEA032', label: 'Prog II', title: 'CEA032 PROGRAMACAO DE COMPUTADORES II'},
@@ -69,112 +64,126 @@
         {level: 7, id: 'CEA476', label: 'FTC', title: 'CEA476 FUNDAMENTOS TEORICOS DA COMPUTACAO'},
         {level: 7, id: 'CEA508', label: 'Computação gráfica', title: 'CEA508 COMPUTACAO GRAFICA'},
         {level: 7, id: 'CEA551', label: 'Modelagem e análise de sistemas lineares', title: 'CEA551 MODELAGEM E ANALISE DE SISTEMAS LINEARES'},
-        {level: 7, id: 'CEA580', label: 'Microprocessadores e microcontroladores', title: 'CEA580 MICROPROCESSADORES E MICROCONTROLADORES'},
+        {level: 7, id: 'CEA580', label: 'Microprocessadores', title: 'CEA580 MICROPROCESSADORES E MICROCONTROLADORES'},
 
         {level: 8, id: 'CEA419', label: 'Linguagens', title: 'CEA419 LINGUAGENS DE PROGRAMACAO'},
         {level: 8, id: 'CEA450', label: 'IHC', title: 'CEA450 INTERACAO HUMANO-COMPUTADOR'},
+        {level: 8, id: 'EAD701', label: 'Economia', title: 'EAD701 ECONOMIA'},
         {level: 8, id: 'CEA457', label: 'IA', title: 'CEA457 INTELIGENCIA ARTIFICIAL'},
         {level: 8, id: 'CEA548', label: 'Redes I', title: 'CEA548 REDES DE COMPUTADORES I'},
-        {level: 8, id: 'EAD701', label: 'Economia', title: 'EAD701 ECONOMIA'},
 
         {level: 9, id: 'CEA433', label: 'Sistemas distribuídos', title: 'CEA433 SISTEMAS DISTRIBUIDOS'},
         {level: 9, id: 'CEA495', label: 'TCC I', title: 'CEA495 TRABALHO DE CONCLUSAO DE CURSO I'},
         {level: 9, id: 'CEA506', label: 'Compiladores I', title: 'CEA506 COMPILADORES I'},
-        {level: 9, id: 'CEA510', label: 'Redes II', title: 'CEA510 REDES DE COMPUTADORES II'},
         {level: 9, id: 'EAD702', label: 'Direito e legislação', title: 'EAD702 DIREITO E LEGISLACAO'},
+        {level: 9, id: 'CEA510', label: 'Redes II', title: 'CEA510 REDES DE COMPUTADORES II'},
         
-        {level: 10, id: 'CEA491', label: 'Informática e sociedade', title: 'CEA491 INFORMATICA E SOCIEDADE'},
         {level: 10, id: 'CEA496', label: 'TCC II', title: 'CEA496 TRABALHO DE CONCLUSAO DE CURSO II'},
         {level: 10, id: 'CEA592', label: 'Fundamentos de ciência do ambiente', title: 'CEA592 FUNDAMENTOS DE CIENCIA DO AMBIENTE'},
-        {level: 10, id: 'CEA693', label: 'Avaliação de desempenho de sistemas', title: 'CEA693 AVALIACAO DE DESEMPENHO DE SISTEMAS'},
+        {level: 10, id: 'CEA491', label: 'Informática e sociedade', title: 'CEA491 INFORMATICA E SOCIEDADE'},
         {level: 10, id: 'EAD703', label: 'Administração', title: 'EAD703 ADMINISTRACAO'},
+        {level: 10, id: 'CEA693', label: 'Avaliação de desempenho de sistemas', title: 'CEA693 AVALIACAO DE DESEMPENHO DE SISTEMAS'},
     ]);
 
-    var edges = new vis.DataSet([
-        {from: 'CEA433', to: 'CEA548'},
-        {from: 'CEA495', to: 'CEA427'},
-        {from: 'CEA495', to: 'CEA437'},
-        {from: 'CEA495', to: 'CEA440'},
-        {from: 'CEA495', to: 'CEA485'},
-        {from: 'CEA495', to: 'CEA546'},
-        {from: 'CEA495', to: 'CEA561'},
-        {from: 'CEA495', to: 'CEA580'},
-        {from: 'CEA506', to: 'CEA476'},
-        {from: 'CEA510', to: 'CEA548'},
+    var edgesSet = new vis.DataSet([
+        {to: 'CEA433', from: 'CEA548'},
+        {to: 'CEA495', from: 'CEA427'},
+        {to: 'CEA495', from: 'CEA437'},
+        {to: 'CEA495', from: 'CEA440'},
+        {to: 'CEA495', from: 'CEA485'},
+        {to: 'CEA495', from: 'CEA546'},
+        {to: 'CEA495', from: 'CEA561'},
+        {to: 'CEA495', from: 'CEA580'},
+        {to: 'CEA506', from: 'CEA476'},
+        {to: 'CEA510', from: 'CEA548'},
         
-        {from: 'CEA003', to: 'CEA001'},
-        {from: 'CEA003', to: 'CEA160'},
-        {from: 'CEA032', to: 'CEA030'},
-        {from: 'CEA301', to: 'CEA160'},
-        {from: 'CEA307', to: 'CEA160'},
+        {to: 'CEA003', from: 'CEA001'},
+        {to: 'CEA003', from: 'CEA160'},
+        {to: 'CEA032', from: 'CEA030'},
+        {to: 'CEA301', from: 'CEA160'},
+        {to: 'CEA307', from: 'CEA160'},
         
-        {from: 'CEA006', to: 'CEA301'},
-        {from: 'CEA007', to: 'CEA003'},
-        {from: 'CEA302', to: 'CEA301'},
-        {from: 'CEA341', to: 'CEA030'},
-        {from: 'CEA488', to: 'CEA030'},
+        {to: 'CEA006', from: 'CEA301'},
+        {to: 'CEA007', from: 'CEA003'},
+        {to: 'CEA302', from: 'CEA301'},
+        {to: 'CEA341', from: 'CEA030'},
+        {to: 'CEA488', from: 'CEA030'},
         
-        {from: 'CEA013', to: 'CEA001'},
-        {from: 'CEA013', to: 'CEA003'},
-        {from: 'CEA429', to: 'CEA032'},
-        {from: 'CEA429', to: 'CEA488'},
-        {from: 'CEA466', to: 'CEA443'},
-        {from: 'CEA466', to: 'CEA488'},
-        {from: 'CEA552', to: 'CEA007'},
-        {from: 'CEA552', to: 'CEA302'},
-        {from: 'CEA562', to: 'CEA301'},
-        {from: 'CEA562', to: 'CEA302'},
+        {to: 'CEA013', from: 'CEA001'},
+        {to: 'CEA013', from: 'CEA003'},
+        {to: 'CEA429', from: 'CEA032'},
+        {to: 'CEA429', from: 'CEA488'},
+        {to: 'CEA466', from: 'CEA443'},
+        {to: 'CEA466', from: 'CEA488'},
+        {to: 'CEA552', from: 'CEA007'},
+        {to: 'CEA552', from: 'CEA302'},
+        {to: 'CEA562', from: 'CEA301'},
+        {to: 'CEA562', from: 'CEA302'},
         
-        {from: 'CEA034', to: 'CEA007'},
-        {from: 'CEA034', to: 'CEA013'},
-        {from: 'CEA148', to: 'CEA001'},
-        {from: 'CEA148', to: 'CEA030'},
-        {from: 'CEA148', to: 'CEA302'},
-        {from: 'CEA203', to: 'CEA030'},
-        {from: 'CEA203', to: 'CEA341'},
-        {from: 'CEA485', to: 'CEA032'},
-        {from: 'CEA485', to: 'CEA488'},
-        {from: 'CEA502', to: 'CEA006'},
-        {from: 'CEA502', to: 'CEA007'},
+        {to: 'CEA034', from: 'CEA007'},
+        {to: 'CEA034', from: 'CEA013'},
+        {to: 'CEA148', from: 'CEA001'},
+        {to: 'CEA148', from: 'CEA030'},
+        {to: 'CEA148', from: 'CEA302'},
+        {to: 'CEA203', from: 'CEA030'},
+        {to: 'CEA203', from: 'CEA341'},
+        {to: 'CEA485', from: 'CEA032'},
+        {to: 'CEA485', from: 'CEA488'},
+        {to: 'CEA502', from: 'CEA006'},
+        {to: 'CEA502', from: 'CEA007'},
         
-        {from: 'CEA440', to: 'CEA488'},
-        {from: 'CEA509', to: 'CEA203'},
-        {from: 'CEA546', to: 'CEA466'},
-        {from: 'CEA561', to: 'CEA034'},
-        {from: 'CEA561', to: 'CEA552'},
-        {from: 'CEA582', to: 'CEA562'},
+        {to: 'CEA440', from: 'CEA488'},
+        {to: 'CEA509', from: 'CEA203'},
+        {to: 'CEA546', from: 'CEA466'},
+        {to: 'CEA561', from: 'CEA034'},
+        {to: 'CEA561', from: 'CEA552'},
+        {to: 'CEA582', from: 'CEA562'},
         
-        {from: 'CEA437', to: 'CEA203'},
-        {from: 'CEA437', to: 'CEA488'},
-        {from: 'CEA476', to: 'CEA466'},
-        {from: 'CEA508', to: 'CEA001'},
-        {from: 'CEA508', to: 'CEA488'},
-        {from: 'CEA551', to: 'CEA013'},
-        {from: 'CEA551', to: 'CEA552'},
-        {from: 'CEA580', to: 'CEA203'},
+        {to: 'CEA437', from: 'CEA203'},
+        {to: 'CEA437', from: 'CEA488'},
+        {to: 'CEA476', from: 'CEA466'},
+        {to: 'CEA508', from: 'CEA001'},
+        {to: 'CEA508', from: 'CEA488'},
+        {to: 'CEA551', from: 'CEA013'},
+        {to: 'CEA551', from: 'CEA552'},
+        {to: 'CEA580', from: 'CEA203'},
         
-        {from: 'CEA419', to: 'CEA476'},
-        {from: 'CEA450', to: 'CEA485'},
-        {from: 'CEA457', to: 'CEA466'},
-        {from: 'CEA548', to: 'CEA488'},
+        {to: 'CEA419', from: 'CEA476'},
+        {to: 'CEA450', from: 'CEA485'},
+        {to: 'CEA457', from: 'CEA466'},
+        {to: 'CEA548', from: 'CEA488'},
 
-        {from: 'CEA496', to: 'CEA495'},
-        {from: 'CEA693', to: 'CEA433'},
+        {to: 'CEA496', from: 'CEA495'},
+        {to: 'CEA693', from: 'CEA433'},
     ]);
+    
+    var gray = {
+        border: 'rgba(137,140,139,0.75)',
+        background: 'rgba(197,209,204,0.75)',
+    }
+    var blue = {
+        border: 'rgba(43,124,233,1)',
+        background: 'rgba(151,194,252,1)',
+    }
+    var green = {
+        border: 'rgba(43,233,124,1)',
+        background: 'rgba(151,252,194,1)',
+    }
 
     var container = document.getElementById('mynetwork');
     var data = {
-        nodes: nodes,
-        edges: edges
+        nodes: nodesSet,
+        edges: edgesSet,
     }
     var options = {
         nodes: {
-            shape: 'box'
+            color : gray,
+            shape: 'box',
         },
         edges: {
-            arrows: 'from',
+            arrows: 'to',
             smooth: {
-                type: 'dynamic',
+                type: 'horizontal',
                 forceDirection: 'horizontal',
                 roundness: 0.4,
             }
@@ -184,14 +193,72 @@
                 direction: 'LR',
                 levelSeparation: 220,
             }
-        }
+        },
+        physics: {
+            enabled: false,
+        },
+        interaction: {
+            selectable: false,
+        },
     };
 
     var network = new vis.Network(container, data, options);
+    network.stabilize();
+    
+    var cursadas = [];
+    var disponiveis = [];
 
     network.on("click", function (params) {
-        params.event = "[original event]";
-        document.getElementById('eventSpan').innerHTML = '<h2>Click event:</h2>' + JSON.stringify(params, null, 4);
+        var selectedNode = network.getNodeAt(params.pointer.DOM);
+        
+        if (selectedNode != undefined) {
+            var i,j;
+            var nodes = nodesSet.get({returnType: 'Object'});
+            var edges = edgesSet.get({returnType: 'Object'});
+
+            if (cursadas[selectedNode] == true) {
+                cursadas[selectedNode] = undefined;
+                if (disponiveis[selectedNode] == true)
+                    nodes[selectedNode].color = green;
+                else
+                    nodes[selectedNode].color = gray;
+            } else {
+                cursadas[selectedNode] = true;
+                nodes[selectedNode].color = blue;
+            }
+
+            var connectedNodes = network.getConnectedNodes(selectedNode);
+
+            loopNodes: for (i = 0; i < connectedNodes.length; i++) {
+                var connectedEdges = network.getConnectedEdges(connectedNodes[i]);
+                var available = false;
+
+                for (j = 0; j < connectedEdges.length; j++) {
+                    if (edges[connectedEdges[j]].to == connectedNodes[i]) {
+                        disponiveis[connectedNodes[i]] = true;
+                        if (cursadas[edges[connectedEdges[j]].from] != true) {
+                            disponiveis[connectedNodes[i]] = undefined;
+                            if (cursadas[connectedNodes[i]] != true)
+                                nodes[connectedNodes[i]].color = gray;
+                            continue loopNodes;
+                        }
+                    }
+                }
+                if (disponiveis[connectedNodes[i]] == true
+                 && cursadas[connectedNodes[i]] != true) {
+                    nodes[connectedNodes[i]].color = green;
+                }
+            }
+        }
+
+        // transform the object into an array
+        var updateArray = [];
+        for (nodeId in nodes) {
+            if (nodes.hasOwnProperty(nodeId)) {
+                updateArray.push(nodes[nodeId]);
+            }
+        }
+        nodesSet.update(updateArray);
     });
     network.on("doubleClick", function (params) {
         params.event = "[original event]";
@@ -210,8 +277,7 @@
         document.getElementById('eventSpan').innerHTML = '<h2>dragging event:</h2>' + JSON.stringify(params, null, 4);
     });
     network.on("dragEnd", function (params) {
-        params.event = "[original event]";
-        document.getElementById('eventSpan').innerHTML = '<h2>dragEnd event:</h2>' + JSON.stringify(params, null, 4);
+        network.unselectAll();
     });
     network.on("zoom", function (params) {
         document.getElementById('eventSpan').innerHTML = '<h2>zoom event:</h2>' + JSON.stringify(params, null, 4);
@@ -226,7 +292,7 @@
         console.log('select Event:', params);
     });
     network.on("selectNode", function (params) {
-        console.log('selectNode Event:', params);
+        
     });
     network.on("selectEdge", function (params) {
         console.log('selectEdge Event:', params);
