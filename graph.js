@@ -7,7 +7,7 @@ var nodesSet = new vis.DataSet([
     {level: 1, id: 'EAD707', label: 'Comunicação e expressão', title: 'EAD707 COMUNICACAO E EXPRESSAO'},
     {level: 1, id: 'CEA030', label: 'Prog I', title: 'CEA030 PROGRAMACAO DE COMPUTADORES I'},
 
-    {level: 2, id: 'CEA003', label: 'Física I', title: 'FISICA I'},
+    {level: 2, id: 'CEA003', label: 'Física I', title: 'CEA003 FISICA I'},
     {level: 2, id: 'CEA032', label: 'Prog II', title: 'CEA032 PROGRAMACAO DE COMPUTADORES II'},
     {level: 2, id: 'CEA301', label: 'Cálculo II', title: 'CEA301 CALCULO DIFERENCIAL E INTEGRAL II'},
     {level: 2, id: 'CEA307', label: 'Estatística', title: 'CEA307 ESTATISTICA E PROBABILIDADE'},
