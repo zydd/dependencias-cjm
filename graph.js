@@ -13,7 +13,7 @@ var nodesSet = new vis.DataSet([
     {level: 2, id: 'CEA307', label: 'Estatística', title: 'CEA307 ESTATISTICA E PROBABILIDADE'},
     {level: 2, id: 'CEA443', label: 'Matemática discreta', title: 'CEA443 MATEMATICA DISCRETA'},
 
-    {level: 3, id: 'CEA006', label: 'Cálculo II', title: 'CEA006 CALCULO DIFERENCIAL E INTEGRAL III'},
+    {level: 3, id: 'CEA006', label: 'Cálculo III', title: 'CEA006 CALCULO DIFERENCIAL E INTEGRAL III'},
     {level: 3, id: 'CEA007', label: 'Física II', title: 'CEA007 FISICA II'},
     {level: 3, id: 'CEA302', label: 'IEDO', title: 'INTRODUCAO AS EQUACOES DIFERENCIAIS ORDINARIAS'},
     {level: 3, id: 'CEA341', label: 'Eletrônica digital', title: 'CEA341 PRINCIPIOS DE ELETRONICA DIGITAL'},
